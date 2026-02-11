@@ -6,7 +6,7 @@
 <title>Akrotiri • Home</title>
 
 <link rel="stylesheet" href="./assets/css/main.css">
-
+<link rel="icon" type="image/x-icon" href="media/favicon.ico">
 </head>
 
 <body>
@@ -657,10 +657,7 @@
     <div class="form-box">
       <h2>Get in Touch</h2>
 
-     <form
-  action="https://vivek-raj-form.vercel.app/reach"
-  method="post"
->
+     <form id="contactForm">
 
   <div class="form-group">
     <label>Your Name</label>
@@ -682,20 +679,16 @@
     <textarea name="message" rows="5" required></textarea>
   </div>
 
-  <!-- hCaptcha -->
-  <div
-    class="h-captcha"
-    data-sitekey="cd8e6168-e7ba-4062-bdfc-4c9ad61ab8a6"
-  ></div>
-
-  <!-- REQUIRED for backend -->
-  <input type="hidden" name="h-captcha-response">
-
   <button class="btn-submit" type="submit">
     Send Message
   </button>
 
 </form>
+
+<p id="successMessage" style="display:none; color:green; margin-top:15px;">
+  Message sent successfully!
+</p>
+
 </div>
   </section>
 
@@ -841,5 +834,15 @@
         if (e.target === lightbox) lightbox.style.display = 'none';
     });
 </script>
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // stop reload
+    
+    document.getElementById("successMessage").style.display = "block";
+    
+    this.reset(); // clear form
+});
+</script>
+
 </body>
 </html>
