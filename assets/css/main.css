@@ -23,6 +23,12 @@
       --shadow: 0 18px 45px rgba(0,0,0,.07);
 }
 
+    body {
+      font-family: "Playfair Display", Georgia, serif;
+      background: #ffffff;
+      color: #000;
+      line-height: 1.7;
+    }
 html {
   scroll-behavior: smooth;
 }
@@ -220,11 +226,6 @@ html {
     transition: width 0.2s, height 0.2s, background-color 0.2s;
     /* Smooth scaling */
 }
-
-
-/* Hide the default cursor for a cleaner museum feel */
-
-
 /* Make the dot grow when hovering over links or buttons */
 
 .cursor-hover {
@@ -332,10 +333,10 @@ body{
   color:#7a7a7a;
 }
 
-@media(max-width:768px){
+/* @media(max-width:768px){
   .hero-sub{font-size:18px}
   .hero-quote{font-size:20px}
-}
+} */
 
 /* About.css */
 
@@ -844,9 +845,9 @@ header .subtitle {
       gap:12px;
       grid-template-columns: 1fr 1fr;
     }
-    @media (max-width: 520px){
+    /* @media (max-width: 520px){
       .mosaic{grid-template-columns:1fr}
-    }
+    } */
     .tile{
       position:relative;
       border-radius: 18px;
@@ -1236,12 +1237,7 @@ header .subtitle {
     
     /* hero */
   
-    body {
-      font-family: "Playfair Display", Georgia, serif;
-      background: #ffffff;
-      color: #000;
-      line-height: 1.7;
-    }
+   
 
     a {
       color: #000;
@@ -1358,7 +1354,7 @@ header .subtitle {
     }
 
     .form-group label {
-      font-size: 14px;
+      font-size: 16px;
       display: block;
       margin-bottom: 6px;
     }
@@ -1368,7 +1364,7 @@ header .subtitle {
       width: 100%;
       padding: 12px;
       border: 1px solid #ccc;
-      font-size: 15px;
+      font-size: 14px;
     }
 
     textarea {
