@@ -14,8 +14,8 @@
 </head>
 
 <body>
-<body>
 
+   <div class="cursor-dot"></div>
    <div class="floating-bg">
     <img src="assets/img/image.png" alt="">
 </div>
@@ -28,6 +28,11 @@
 
 
     <section id="home" class="hero">
+      <!-- Background Slides -->
+        <div class="hero-bg">
+            <div class="bg-slide active"></div>
+            <div class="bg-slide"></div>
+        </div>
         <div class="hero-inner">
 
             <h1 class="hero-title">
@@ -41,7 +46,7 @@
             <div class="divider"></div>
 
             <p class="hero-quote">
-                Some things are worth waiting for.
+               In every thread, a fragment of history.
             </p>
 
             <div class="scroll">
@@ -139,51 +144,55 @@
 
         <section class="gallery">
             <div class="gallery-item">
-                <div class="img-container"></div>
+                <div class="img-container">
                 <img src="./assets/img/Akrotiri gallery/Akrotiri flower.jpeg" alt="The flower" class="popup-img">
                 <div class="overlay"></div>
                 <div class="content">
                     <h2>The Flower</h2>
                     <p>Delicate images that whisper fragility and beauty.</p>
                 </div>
+                </div>
             </div>
 
             <div class="gallery-item">
-                <div class="img-container"></div>
+                <div class="img-container">
                 <img src="./assets/img/Akrotiri gallery/Akrotiri harvest.jpeg" alt="The harvest" class="popup-img">
                 <div class="overlay"></div>
                 <div class="content">
                     <h2>The Harvest</h2>
                     <p>Hands at work, the dawn's first light, and quiet patience.</p>
                 </div>
+                </div>
             </div>
 
             <div class="gallery-item">
-                <div class="img-container"></div>
+                <div class="img-container">
                 <img src="./assets/img/Akrotiri gallery/Akrotiri thread 1.jpeg" alt="The thread" class="popup-img">
                 <div class="overlay"></div>
                 <div class="content">
                     <h2>The Thread</h2>
                     <p>Macro views capturing color, texture, and intricate patterns.</p>
                 </div>
+                </div>
             </div>
 
             <div class="gallery-item">
-                <div class="img-container"></div>
+                <div class="img-container">
                 <img src="./assets/img/Akrotiri gallery/Akrotiri lifestyle.jpeg" alt="The experience" class="popup-img">
                 <div class="overlay"></div>
                 <div class="content">
                     <h2>The Experience</h2>
                     <p>Minimalist lifestyle glimpses—tea, cuisine, and ancient rituals.</p>
                 </div>
+                </div>
             </div>
+        </section>
 
-            <!-- Lightbox Overlay -->
+         <!-- Lightbox Overlay -->
             <div id="lightbox" class="lightbox">
                 <span class="close">&times;</span>
                 <img class="lightbox-content" id="lightbox-img">
             </div>
-        </section>
 
         <section id="innovate" class="section">
             <div class="glow" aria-hidden="true"></div>
@@ -201,10 +210,10 @@
 
                             <div class="ctaRow">
                                 <a class="btn btnPrimary" href="#precision" aria-label="Explore precision cultivation">
-                  Explore Innovation <span aria-hidden="true">→</span>
+                  Explore Innovation <span aria-hidden="true">⬇</span>
                 </a>
                                 <a class="btn" href="#research" aria-label="Jump to research and future vision">
-                  Research & Vision <span aria-hidden="true">↗</span>
+                  Research & Vision <span aria-hidden="true">⬇</span>
                 </a>
                             </div>
 
@@ -567,7 +576,7 @@
       <h2>Contact Details</h2>
 
       <div class="info-row">
-        <span class="icon" aria-hidden="true">📍</span>
+        <span class="icon-contact" aria-hidden="true">📍</span>
         <div>
           <p class="info-label">Office Address</p>
           <p>
@@ -586,7 +595,7 @@
       </div>
 
       <div class="info-row">
-        <span class="icon" aria-hidden="true">📞</span>
+        <span class="icon-contact" aria-hidden="true">📞</span>
         <div>
           <p class="info-label">Call Us</p>
           <p><a href="tel:+918244356751">+91 82443 56751</a></p>
@@ -594,7 +603,7 @@
       </div>
 
       <div class="info-row">
-        <span class="icon" aria-hidden="true">✉️</span>
+        <span class="icon-contact" aria-hidden="true">✉️</span>
         <div>
           <p class="info-label">Email Us</p>
           <p>
@@ -608,7 +617,7 @@
 
       <!-- SOCIAL LINKS -->
 <div class="info-row">
-  <span class="icon" aria-hidden="true">🌐</span>
+  <span class="icon-contact" aria-hidden="true">🌐</span>
   <div>
     <p class="info-label">Social</p>
 
@@ -758,7 +767,23 @@
                         navWrapper.classList.toggle("active");
                     });
                 }
+                const searchInput = document.getElementById("search-input");
+    const searchIcon = document.querySelector(".search-icon");
 
+    if (searchInput && searchIcon) {
+
+      // Click on magnifying glass
+      searchIcon.addEventListener("click", () => {
+        performSearch(searchInput.value);
+      });
+
+      // Press Enter
+      searchInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          performSearch(searchInput.value);
+        }
+      });
+    }
 
                 const scrollBtn = document.getElementById("scrollToTop");
                 const navbar = document.querySelector(".navbar");
@@ -841,35 +866,33 @@
             }
         });
     </script>
-    <!-- Lightbox Overlay -->
-    <div id="lightbox" class="lightbox">
-        <span class="close">&times;</span>
-        <img class="lightbox-content" id="lightbox-img">
-    </div>
+
 
     <!-- Add this script at the bottom -->
     <script>
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        const popupImages = document.querySelectorAll('.popup-img');
-        const closeBtn = document.querySelector('.close');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const popupImages = document.querySelectorAll('.popup-img');
+const closeBtn = document.querySelector('.close');
 
-        popupImages.forEach(img => {
-            img.addEventListener('click', () => {
-                lightbox.style.display = 'block';
-                lightboxImg.src = img.src;
-            });
-        });
+popupImages.forEach(img => {
+    img.addEventListener('click', () => {
+        lightbox.style.display = 'flex';   // important change
+        lightboxImg.src = img.src;
+    });
+});
 
-        closeBtn.addEventListener('click', () => {
-            lightbox.style.display = 'none';
-        });
+closeBtn.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+});
 
-        // Click outside image closes lightbox
-        lightbox.addEventListener('click', e => {
-            if (e.target === lightbox) lightbox.style.display = 'none';
-        });
-    </script>
+lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) {
+        lightbox.style.display = 'none';
+    }
+});
+</script>
+
 
 
 
@@ -956,8 +979,52 @@
     </script>
 
 
+   <!-- // Background slider for hero section  -->
+    <script>
+        const slides = document.querySelectorAll(".bg-slide");
+        let current = 0;
 
+        setInterval(() => {
+            slides[current].classList.remove("active");
+            current = (current + 1) % slides.length;
+            slides[current].classList.add("active");
+        }, 2000);
+    </script>
 
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+    const dot = document.querySelector(".cursor-dot");
+
+    if (!dot) return; // prevent errors
+
+    window.addEventListener("mousemove", (e) => {
+        dot.style.left = e.clientX + "px";
+        dot.style.top = e.clientY + "px";
+    });
+
+    document.addEventListener("mouseover", (e) => {
+        if (
+            e.target.tagName === 'A' ||
+            e.target.tagName === 'BUTTON' ||
+            e.target.closest('.search-icon')
+        ) {
+            dot.classList.add("cursor-hover");
+        }
+    });
+
+    document.addEventListener("mouseout", (e) => {
+        if (
+            e.target.tagName === 'A' ||
+            e.target.tagName === 'BUTTON' ||
+            e.target.closest('.search-icon')
+        ) {
+            dot.classList.remove("cursor-hover");
+        }
+    });
+
+});
+</script>
 
 
 
