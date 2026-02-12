@@ -129,7 +129,7 @@
         <!-- Founder Note -->
         <section class="founder-note">
             <p>
-                Akrotiri was never meant to be loud. It was created quietly, out of long mornings, careful decisions, and a deep respect for something that cannot be rushed. If a choice does not honour the saffron, we wait.
+                We did not begin Akrotiri in pursuit of scale or speed, but in pursuit of meaning. In the stillness of dawns and the turning of seasons, we learned that saffron yields only to patience and respect. Every decision we make is measured against that truth. If it does not preserve the integrity of the harvest, we do not proceed. Time is not our obstacle — it is our teacher.
             </p>
             <div class="signature">— The Akrotiri Founders</div>
         </section>
@@ -448,9 +448,9 @@
                                     </div>
                                 </div>
 
-                                <div class="softNote" style="margin-top:12px">
+                                <!-- <div class="softNote" style="margin-top:12px">
                                     <b style="color: rgba(0,0,0,.86);">Want this to be clickable?</b><br /> Add your patent IDs / journal citations later and link them here—this layout is ready for it.
-                                </div>
+                                </div> -->
                             </div>
                         </aside>
                     </div>
@@ -558,15 +558,21 @@
         <section id="contact" class="contact-section">
   <div class="contact-hero container">
     <h1 class="contact-title">Contact</h1>
-    <p class="contact-subtitle">Begin a conversation — we're listening.</p>
-
+<br/>
     <div class="audience">
+       <p >Begin a conversation — we're listening.</p>
       <h2>For connoisseurs and collaborators</h2>
       <p>Customers · Chefs · Researchers · Partners</p>
     </div>
   </div>
 </section>
-
+ <section class="location">
+    <h3>Location & Presence</h3>
+    <p>
+      Akrotiri exists physically and philosophically — rooted in controlled
+      environments, guided by tradition and science.
+    </p>
+  </section>
 
   <!-- MAIN CONTACT -->
   <section class="contact-main container">
@@ -665,31 +671,36 @@
      <form id="contactForm">
 
   <div class="form-group">
-    <label>Your Name</label>
-    <input type="text" name="name" required />
-  </div>
+  <label for="name">Your Name</label>
+  <input type="text" id="name" name="name" required />
+</div>
 
-  <div class="form-group">
-    <label>Your Email</label>
-    <input type="email" name="email" required />
-  </div>
+<div class="form-group">
+  <label for="email">Your Email</label>
+  <input type="email" id="email" name="email" required />
+</div>
 
-  <div class="form-group">
-    <label>Subject</label>
-    <input type="text" name="subject" required />
-  </div>
+<div class="form-group">
+  <label for="subject">Subject</label>
+  <input type="text" id="subject" name="subject" required />
+</div>
 
-  <div class="form-group">
-    <label>Message</label>
-    <textarea name="message" rows="5" required></textarea>
-  </div>
+<div class="form-group">
+  <label for="message">Message</label>
+  <textarea id="message" name="message" rows="5" required></textarea>
+</div>
 
   <button class="btn-submit" type="submit">
     Send Message
   </button>
 
 </form>
-
+<div id="popup" class="popup">
+  <div class="popup-content">
+    <p>Message sent successfully!</p>
+    <button onclick="closePopup()">OK</button>
+  </div>
+</div>
 <p id="successMessage" style="display:none; color:green; margin-top:15px;">
   Message sent successfully!
 </p>
@@ -697,14 +708,7 @@
 </div>
   </section>
 
-  <!-- LOCATION & PRESENCE -->
-  <section class="location">
-    <h3>Location & Presence</h3>
-    <p>
-      Akrotiri exists physically and philosophically — rooted in controlled
-      environments, guided by tradition and science.
-    </p>
-  </section>
+ 
 <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
 </section>
 
@@ -728,30 +732,55 @@
     </script>
 
     <script>
-        // Smooth scrolling for internal anchor links
-        document.addEventListener("click", function(e) {
-            const link = e.target.closest('a[href^="#"]');
-            if (!link) return;
+document.addEventListener("click", function(e) {
+    const link = e.target.closest('a[href^="#"]');
+    if (!link) return;
 
-            const targetId = link.getAttribute("href");
-            if (targetId.length <= 1) return;
+    const targetId = link.getAttribute("href");
+    if (targetId.length <= 1) return;
 
-            const target = document.querySelector(targetId);
-            if (!target) return;
+    const target = document.querySelector(targetId);
+    if (!target) return;
 
-            e.preventDefault();
+    e.preventDefault();
 
-            const navbar = document.querySelector(".navbar");
-            const headerOffset = navbar ? navbar.offsetHeight : 80;
-            const elementPosition = target.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+    const navbar = document.querySelector(".navbar");
+    const headerOffset = navbar ? navbar.offsetHeight : 80;
+    const targetPosition = target.offsetTop - headerOffset;
 
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: "smooth"
-            });
-        });
-    </script>
+    smoothScrollConstantSpeed(targetPosition);
+});
+
+
+function smoothScrollConstantSpeed(targetPosition) {
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+
+    const speed = 0.8; 
+    // pixels per millisecond (0.6 = smooth luxury feel)
+    // increase → faster
+    // decrease → slower
+
+    const duration = Math.abs(distance) / speed;
+
+    let startTime = null;
+
+    function animation(currentTime) {
+        if (!startTime) startTime = currentTime;
+
+        const timeElapsed = currentTime - startTime;
+        const progress = Math.min(timeElapsed / duration, 1);
+
+        window.scrollTo(0, startPosition + distance * progress);
+
+        if (progress < 1) {
+            requestAnimationFrame(animation);
+        }
+    }
+
+    requestAnimationFrame(animation);
+}
+</script>  
 
     <script>
         // 1. FETCH HEADER
@@ -897,85 +926,78 @@ lightbox.addEventListener('click', e => {
 
 
     <script>
-        const pages = [{
-            name: "Home",
-            link: "#home"
-        }, {
-            name: "About",
-            link: "#about"
-        }, {
-            name: "Gallery",
-            link: "#gallery"
-        }, {
-            name: "Innovation",
-            link: "#innovation"
-        }, {
-            name: "Standard",
-            link: "#standard"
-        }, {
-            name: "Contact",
-            link: "#contact"
-        }];
+        document.addEventListener("DOMContentLoaded", function () {
 
-        const searchInput = document.getElementById("search-input");
-        const resultsBox = document.getElementById("search-results");
+    const pages = [
+        { name: "Home", link: "#home" },
+        { name: "About", link: "#about" },
+        { name: "Gallery", link: "#gallery" },
+        { name: "Innovation", link: "#innovation" },
+        { name: "Standard", link: "#standard" },
+        { name: "Contact", link: "#contact" }
+    ];
 
-        // Live suggestions
-        searchInput.addEventListener("keyup", function(e) {
+    const searchInput = document.getElementById("search-input");
+    const resultsBox = document.getElementById("search-results");
+
+    // 🔒 STOP if search bar doesn't exist
+    if (!searchInput || !resultsBox) return;
+
+    searchInput.addEventListener("keyup", function () {
+        const query = this.value.toLowerCase();
+        resultsBox.innerHTML = "";
+
+        if (query.length === 0) {
+            resultsBox.style.display = "none";
+            return;
+        }
+
+        const filtered = pages.filter(page =>
+            page.name.toLowerCase().includes(query)
+        );
+
+        if (filtered.length === 0) {
+            resultsBox.style.display = "none";
+            return;
+        }
+
+        filtered.forEach(page => {
+            const item = document.createElement("div");
+            item.textContent = page.name;
+            item.onclick = function () {
+                window.location.href = page.link;
+            };
+            resultsBox.appendChild(item);
+        });
+
+        resultsBox.style.display = "block";
+    });
+
+    searchInput.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+            e.preventDefault();
+
             const query = this.value.toLowerCase();
-            resultsBox.innerHTML = "";
-
-            if (query.length === 0) {
-                resultsBox.style.display = "none";
-                return;
-            }
 
             const filtered = pages.filter(page =>
                 page.name.toLowerCase().includes(query)
             );
 
-            if (filtered.length === 0) {
-                resultsBox.style.display = "none";
-                return;
+            if (filtered.length > 0) {
+                window.location.href = filtered[0].link;
+            } else {
+                alert("No results found");
             }
+        }
+    });
 
-            filtered.forEach(page => {
-                const item = document.createElement("div");
-                item.textContent = page.name;
-                item.onclick = function() {
-                    window.location.href = page.link;
-                };
-                resultsBox.appendChild(item);
-            });
+    document.addEventListener("click", function (e) {
+        if (!e.target.closest(".search-container")) {
+            resultsBox.style.display = "none";
+        }
+    });
 
-            resultsBox.style.display = "block";
-        });
-
-        // ENTER KEY SEARCH
-        searchInput.addEventListener("keydown", function(e) {
-            if (e.key === "Enter") {
-                e.preventDefault(); // stop page reload
-
-                const query = this.value.toLowerCase();
-
-                const filtered = pages.filter(page =>
-                    page.name.toLowerCase().includes(query)
-                );
-
-                if (filtered.length > 0) {
-                    window.location.href = filtered[0].link;
-                } else {
-                    alert("No results found");
-                }
-            }
-        });
-
-        // Hide dropdown when clicking outside
-        document.addEventListener("click", function(e) {
-            if (!e.target.closest(".search-container")) {
-                resultsBox.style.display = "none";
-            }
-        });
+});
     </script>
 
 
@@ -1025,6 +1047,23 @@ lightbox.addEventListener('click', e => {
 
 });
 </script>
+
+<!-- contact form pop up -->
+<script>
+  const form = document.getElementById("contactForm");
+  const popup = document.getElementById("popup");
+
+  form.addEventListener("submit", function(event) {
+    event.preventDefault();
+    popup.style.display = "flex";
+    form.reset();
+  });
+
+  function closePopup() {
+    popup.style.display = "none";
+  }
+</script>
+
 
 
 
