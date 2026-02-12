@@ -21,6 +21,7 @@
 body {
     font-family: "Playfair Display", Georgia, serif;
     background: #fdf8e0;
+
     color: #000;
     line-height: 1.7;
     
@@ -58,7 +59,7 @@ body {
     padding: 20px 60px;
     background-color: var(--bg-color);
     min-height: 120px;
-    background: linear-gradient(rgba(244, 239, 231, .86), rgba(244, 239, 231, .90));
+    background: linear-gradient(#faf2dd);
 }
 
 .logo-container .logo {
@@ -71,6 +72,7 @@ body {
     display: flex;
     gap: 45px;
     align-items: center;
+    background-color: #faf2dd;
 }
 
 .nav-links a {
@@ -145,7 +147,7 @@ body {
         top: 100%;
         left: 0;
         width: 100%;
-        background: var(--bg-color);
+        background: #faf2dd;
         flex-direction: column;
         align-items: center;
         gap: 30px;
