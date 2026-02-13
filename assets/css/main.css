@@ -2141,4 +2141,156 @@ textarea {
   cursor: pointer;
 }
 
+/* ============================
+   MOBILE REFINEMENT FIX
+   ============================ */
+@media (max-width: 768px) {
+
+  /* --- GLOBAL --- */
+  body {
+    line-height: 1.6;
+  }
+
+  section {
+    margin-bottom: 60px;
+  }
+
+  /* --- HERO / INNOVATE --- */
+  .innovate-hero {
+    margin-top: 20px;
+    padding: 0 12px 12px;
+    gap: 14px;
+  }
+
+  .heroCard {
+    border-radius: 18px;
+    backdrop-filter: blur(6px);
+  }
+
+  .heroInner {
+    padding: 22px 18px 20px;
+  }
+
+  .heroCard h1 {
+    font-size: 1.9rem;
+    line-height: 1.25;
+    text-align: center;
+  }
+
+  .sub {
+    font-size: 15px;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .ctaRow {
+    justify-content: center;
+  }
+
+  /* --- PILLS / TAGS --- */
+  .pillList,
+  .ctaRow {
+    justify-content: center;
+  }
+
+  .pill {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  .pillList {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  /* --- GRID SECTIONS --- */
+  .grid {
+    gap: 14px;
+  }
+
+  .cardBody {
+    padding: 18px 16px;
+  }
+
+  .lead {
+    font-size: 16px;
+  }
+
+  /* --- METRICS / MINI GRID --- */
+  .metrics,
+  .miniGrid {
+    gap: 10px;
+  }
+
+  .metric,
+  .miniCard {
+    padding: 14px;
+    border-radius: 16px;
+  }
+
+  /* --- MOSAIC --- */
+  .mosaic {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .tile {
+    min-height: auto;
+  }
+
+  /* --- ABOUT BLOCK --- */
+  .about-block {
+    padding: 26px 20px;
+    margin: 40px 0;
+  }
+
+  .about-block .text h2 {
+    font-size: 26px;
+    text-align: center;
+  }
+
+  .about-block .text p {
+    font-size: 15.5px;
+    line-height: 1.65;
+    text-align: center;
+  }
+
+  /* --- FOUNDER NOTE --- */
+  .founder-note {
+    padding: 40px 22px;
+    margin: 80px auto;
+  }
+
+  .founder-note p {
+    font-size: 16px;
+  }
+
+  /* --- GALLERY --- */
+  .gallery {
+    padding: 30px 16px;
+    gap: 20px;
+  }
+
+  .img-container {
+    height: 260px;
+  }
+
+  /* --- CONTACT --- */
+  .contact-box,
+  .form-box {
+    padding: 26px;
+    border-radius: 28px;
+  }
+
+  .contact-hero h1 {
+    font-size: 36px;
+  }
+
+  /* --- REDUCE VISUAL NOISE --- */
+  .glow {
+    opacity: 0.35;
+    filter: blur(26px);
+  }
+}
 
